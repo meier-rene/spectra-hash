@@ -39,7 +39,7 @@ getBlockHash <- function(peaks,
                               FUN=function(x) {paste(c(decimalavoidance(x[1]+EPS_CORRECTION), x[2]),
                                   collapse=":")}), collapse=" ")
 
-    ## cat("Prehash: ", peakString, sep="", file="/tmp/prehash-R") ## Debugging of spectrum-string
+    cat("Prehash: ", peakString, sep="", file="/tmp/prehash-R") ## Debugging of spectrum-string
     block2 <- substr(digest(peakString, algo="sha256", serialize=FALSE),
                      1, MAX_HASH_CHARATERS_ENCODED_SPECTRUM)    
 }
