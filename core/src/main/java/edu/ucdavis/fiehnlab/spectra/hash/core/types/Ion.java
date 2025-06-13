@@ -54,7 +54,9 @@ public class Ion implements Comparable<Ion> {
     }
 
     public String toString() {
-        return String.format("%."+PRECESSION+"f",this.getMass()) + SEPERATOR + String.format("%." + PRECESSION + "f", this.getIntensity());
+        return String.format(java.util.Locale.US, "%." + PRECESSION + "f", this.getMass())
+            + SEPERATOR
+            + String.format(java.util.Locale.US, "%." + PRECESSION + "f", this.getIntensity());
     }
 
     public int compareTo(Ion o) {

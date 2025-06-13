@@ -1,7 +1,7 @@
 package jp.riken.mirt.splash
 
 import edu.ucdavis.fiehnlab.spectra.hash.core
-import scala.collection.JavaConversions._
+import scala.jdk.CollectionConverters._
 import scala.language.implicitConversions
 
 object JavaConversions {
