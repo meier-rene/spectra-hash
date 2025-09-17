@@ -4,13 +4,13 @@
 
     <groupId>edu.ucdavis.fiehnlab.splash</groupId>
     <artifactId>core</artifactId>
-    <version>1.8</version>
+    <version>1.8.1</version>
     <packaging>jar</packaging>
 
     <parent>
         <groupId>edu.ucdavis.fiehnlab</groupId>
         <artifactId>splash</artifactId>
-        <version>1.8</version>
+        <version>1.8.1</version>
     </parent>
 
     <dependencies>
