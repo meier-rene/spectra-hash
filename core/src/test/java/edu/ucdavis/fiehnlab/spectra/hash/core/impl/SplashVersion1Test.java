@@ -7,7 +7,7 @@ import edu.ucdavis.fiehnlab.spectra.hash.core.listener.SplashingEvent;
 import edu.ucdavis.fiehnlab.spectra.hash.core.types.Ion;
 import edu.ucdavis.fiehnlab.spectra.hash.core.types.SpectraType;
 import edu.ucdavis.fiehnlab.spectra.hash.core.types.SpectrumImpl;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,8 +18,8 @@ import java.util.Collection;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests all asspects of the Splash Version 2 and ensures that the generated keys, meets the exspectations. It also ensures
