@@ -3,11 +3,11 @@ package edu.ucdavis.fiehnlab.spectra.hash.core.impl;
 import edu.ucdavis.fiehnlab.spectra.hash.core.types.Ion;
 import edu.ucdavis.fiehnlab.spectra.hash.core.types.SpectraType;
 import edu.ucdavis.fiehnlab.spectra.hash.core.types.SpectrumImpl;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  *  */

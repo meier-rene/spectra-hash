@@ -1,40 +1,19 @@
 package edu.ucdavis.fiehnlab.spectra.hash.rest;
 
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.module.mockmvc.RestAssuredMockMvc;
-import org.junit.Ignore;
-import org.junit.runner.RunWith;
+import io.restassured.RestAssured;
+import io.restassured.module.mockmvc.RestAssuredMockMvc;
+import org.junit.jupiter.api.Disabled;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.*;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-
-import static org.junit.Assert.*;
-
-
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.TestRestTemplate;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static com.jayway.restassured.module.mockmvc.RestAssuredMockMvc.*;
-import static com.jayway.restassured.module.mockmvc.matcher.RestAssuredMockMvcMatchers.*;
+import static io.restassured.module.mockmvc.RestAssuredMockMvc.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
-@WebAppConfiguration
-@IntegrationTest("server.port:0")
+@SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class RestControllerTest {
 
     private MockMvc mockMvc;
@@ -62,25 +41,25 @@ public class RestControllerTest {
     private WebApplicationContext context;
 
 
-    @Value("${local.server.port}")
-            int port;
+    @LocalServerPort
+    int port;
 
-    @org.junit.Before
+    @org.junit.jupiter.api.BeforeEach
     public void setUp() throws Exception {
         mockMvc = MockMvcBuilders
                 .webAppContextSetup(context).build();
-        RestAssuredMockMvc.mockMvc = mockMvc;
+        RestAssuredMockMvc.standaloneSetup(mockMvc);
 
         RestAssured.port = port;
     }
 
-    @org.junit.After
+    @org.junit.jupiter.api.AfterEach
     public void tearDown() throws Exception {
 
     }
 
-    @org.junit.Test
-    @Ignore
+    @org.junit.jupiter.api.Test
+    @Disabled
     public void testConvert() throws Exception {
 
         given().log().all()
@@ -91,8 +70,8 @@ public class RestControllerTest {
                 .then().log().all().statusCode(HttpStatus.OK.value());
     }
 
-    @org.junit.Test
-    @Ignore
+    @org.junit.jupiter.api.Test
+    @Disabled
     public void testConvert2() throws Exception {
 
         given().log().all()

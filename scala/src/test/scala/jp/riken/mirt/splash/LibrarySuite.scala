@@ -1,8 +1,9 @@
 package jp.riken.mirt.splash
 
-import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
-class LibrarySuite extends FlatSpec with Matchers {
+class LibrarySuite extends AnyFlatSpec with Matchers {
   "The splash library wrapper" should "emulate the Java usage" in {
     import jp.riken.mirt.splash._
     import edu.ucdavis.fiehnlab.spectra.hash.core.types.SpectraType
