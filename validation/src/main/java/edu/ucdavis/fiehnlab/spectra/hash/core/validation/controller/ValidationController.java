@@ -7,7 +7,8 @@ import edu.ucdavis.fiehnlab.spectra.hash.core.types.SpectraType;
 import edu.ucdavis.fiehnlab.spectra.hash.core.util.SplashUtil;
 import edu.ucdavis.fiehnlab.spectra.hash.core.validation.serialize.*;
 import org.apache.commons.cli.*;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 
@@ -20,7 +21,7 @@ import java.util.Scanner;
 @Controller
 public class ValidationController implements CommandLineRunner {
 
-    private static Logger logger = Logger.getLogger("validation");
+    private static Logger logger = LoggerFactory.getLogger("validation");
 
     /**
      * utilized FORMAT for the output of strings
