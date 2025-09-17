@@ -2,7 +2,7 @@
 #  this docker file creates a the complete image for deployment of the Splash analysis program
 ###
 
-FROM openjdk:21-jre
+FROM eclipse-temurin:21-jre
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -yq update && apt-get -yq upgrade
 
