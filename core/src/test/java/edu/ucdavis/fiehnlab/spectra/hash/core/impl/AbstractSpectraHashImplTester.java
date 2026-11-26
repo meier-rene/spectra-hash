@@ -10,11 +10,11 @@ import org.geirove.exmeso.ExternalMergeSort;
 import org.geirove.exmeso.kryo.KryoSerializer;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * general testing strategy for splash implementations
@@ -43,7 +43,7 @@ public abstract class AbstractSpectraHashImplTester{
 
         final SpectrumReader reader = new SpectrumReader();
 
-        reader.readSpectrum(new InputStreamReader(getClass().getResourceAsStream(inputFile)), new SpectraHandler() {
+        reader.readSpectrum(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream(inputFile))), new SpectraHandler() {
 
             public void begin() throws IOException {
             }
@@ -58,7 +58,7 @@ public abstract class AbstractSpectraHashImplTester{
                 TestSpectraImpl impl = new TestSpectraImpl(s, hash);
 
                 try {
-                    serializer.writeValues(Arrays.asList(impl).iterator(), temp);
+                    serializer.writeValues(List.of(impl).iterator(), temp);
                 } catch (Exception e) {
                     e.printStackTrace();
                     fail(e.getMessage());
@@ -100,17 +100,12 @@ public abstract class AbstractSpectraHashImplTester{
                 .build();
 
         List<File> sortedChunks;
-        InputStream input = new FileInputStream(tempFile);
-        try {
+        try (InputStream input = new FileInputStream(tempFile)) {
             sortedChunks = sort.writeSortedChunks(serializer.readValues(input));
-        } finally {
-            input.close();
         }
 
-        CloseableIterator<TestSpectraImpl> sorted = sort.mergeSortedChunks(sortedChunks);
-
-        int counter = 0;
-        try {
+        try (CloseableIterator<TestSpectraImpl> sorted = sort.mergeSortedChunks(sortedChunks)) {
+            int counter = 0;
             final File out = new File("target/" + fileName);
 
             PrintStream output = new PrintStream(new FileOutputStream(out));
@@ -177,8 +172,6 @@ public abstract class AbstractSpectraHashImplTester{
             result.linesRead = lines;
 
             return result;
-        } finally {
-            sorted.close();
         }
 
     }

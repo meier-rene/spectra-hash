@@ -2,24 +2,22 @@ package edu.ucdavis.fiehnlab.spectra.hash.core.impl;
 
 import edu.ucdavis.fiehnlab.spectra.hash.core.Spectrum;
 import edu.ucdavis.fiehnlab.spectra.hash.core.Splash;
+import edu.ucdavis.fiehnlab.spectra.hash.core.listener.SplashBlock;
 import edu.ucdavis.fiehnlab.spectra.hash.core.listener.SplashListener;
 import edu.ucdavis.fiehnlab.spectra.hash.core.listener.SplashingEvent;
 import edu.ucdavis.fiehnlab.spectra.hash.core.types.Ion;
 import edu.ucdavis.fiehnlab.spectra.hash.core.types.SpectraType;
 import edu.ucdavis.fiehnlab.spectra.hash.core.types.SpectrumImpl;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Pattern;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests all asspects of the Splash Version 2 and ensures that the generated keys, meets the exspectations. It also ensures
@@ -75,7 +73,7 @@ public class SplashVersion1Test extends AbstractSpectraHashImplTester {
     @Test
     public void testBinBaseAllBinSpectraHash() throws IOException {
         TestResult result = runTest("binbase.hash-" + this.getHashImpl().toString(), (BINBASE_TESTDATA_1), SpectraType.MS, false);
-        assertTrue(result.duplicates == 0);
+        assertEquals(0, result.duplicates);
 
         verifyGeneralSplashLayout(result, SpectraType.MS);
     }
@@ -83,7 +81,7 @@ public class SplashVersion1Test extends AbstractSpectraHashImplTester {
     @Test
     public void testBinBaseAlanineSpectraHash() throws IOException {
         TestResult result = runTest("binbase.alanine.annotations-" + this.getHashImpl().toString(), (BINBASE_TESTDATA_2), SpectraType.MS, false);
-        assertTrue(result.duplicates == 0);
+        assertEquals(0, result.duplicates);
 
         verifyGeneralSplashLayout(result, SpectraType.MS);
     }
@@ -91,7 +89,7 @@ public class SplashVersion1Test extends AbstractSpectraHashImplTester {
     @Test
     public void testMonaSpectraHash1() throws IOException {
         TestResult result = runTest("mona.hash-" + this.getHashImpl().toString(), MONA_TESTDATA_1, SpectraType.MS, false);
-        assertTrue(result.duplicates == 0);
+        assertEquals(0, result.duplicates);
 
         verifyGeneralSplashLayout(result, SpectraType.MS);
     }
@@ -99,7 +97,7 @@ public class SplashVersion1Test extends AbstractSpectraHashImplTester {
     @Test
     public void testMonaSpectraHash2() throws IOException {
         TestResult result = runTest("mona-2.hash-" + this.getHashImpl().toString(), (MONA_TESTDATA_2), SpectraType.MS, false);
-        assertTrue(result.duplicates == 0);
+        assertEquals(0, result.duplicates);
 
         verifyGeneralSplashLayout(result, SpectraType.MS);
     }
@@ -124,7 +122,7 @@ public class SplashVersion1Test extends AbstractSpectraHashImplTester {
             lines++;
             String[] content = scanner.nextLine().split("\t");
 
-            assertEquals(content.length, 2);
+            assertEquals(2, content.length);
             String hash = content[1];
 
             //check if it matches the exspected pattern
@@ -141,7 +139,7 @@ public class SplashVersion1Test extends AbstractSpectraHashImplTester {
         Splash splash = getHashImpl();
 
 
-        Spectrum spectrum = new SpectrumImpl(Arrays.asList(new Ion(100.0, 50)), SpectraType.MS);
+        Spectrum spectrum = new SpectrumImpl(List.of(new Ion(100.0, 50)), SpectraType.MS);
 
 
         final Collection<Boolean> results = new ArrayList<Boolean>();
@@ -149,10 +147,9 @@ public class SplashVersion1Test extends AbstractSpectraHashImplTester {
         splash.addListener(new SplashListener() {
             public void eventReceived(SplashingEvent e) {
 
-                switch (e.getBlock()) {
-                    case FIRST:
-                        assertEquals(e.getProcessedValue(), "splash10");
-                        results.add(true);
+                if (Objects.requireNonNull(e.getBlock()) == SplashBlock.FIRST) {
+                    assertEquals("splash10", e.getProcessedValue());
+                    results.add(true);
                 }
             }
 
@@ -163,7 +160,7 @@ public class SplashVersion1Test extends AbstractSpectraHashImplTester {
 
         splash.splashIt(spectrum);
 
-        assertTrue(results.size() == 1);
+        assertEquals(1, results.size());
     }
 
 
@@ -184,10 +181,9 @@ public class SplashVersion1Test extends AbstractSpectraHashImplTester {
         splash.addListener(new SplashListener() {
             public void eventReceived(SplashingEvent e) {
 
-                switch (e.getBlock()) {
-                    case THIRD:
-                        assertEquals("99000000:100 100000000:100", e.getRawValue());
-                        results.add(true);
+                if (Objects.requireNonNull(e.getBlock()) == SplashBlock.THIRD) {
+                    assertEquals("99000000:100 100000000:100", e.getRawValue());
+                    results.add(true);
                 }
             }
 
@@ -198,7 +194,7 @@ public class SplashVersion1Test extends AbstractSpectraHashImplTester {
 
         splash.splashIt(spectrum);
 
-        assertTrue(results.size() == 1);
+        assertEquals(1, results.size());
     }
 
 
@@ -219,10 +215,9 @@ public class SplashVersion1Test extends AbstractSpectraHashImplTester {
         splash.addListener(new SplashListener() {
             public void eventReceived(SplashingEvent e) {
 
-                switch (e.getBlock()) {
-                    case THIRD:
-                        assertEquals("99000000:100 100000000:100", e.getRawValue());
-                        results.add(true);
+                if (Objects.requireNonNull(e.getBlock()) == SplashBlock.THIRD) {
+                    assertEquals("99000000:100 100000000:100", e.getRawValue());
+                    results.add(true);
                 }
             }
 
@@ -233,7 +228,7 @@ public class SplashVersion1Test extends AbstractSpectraHashImplTester {
 
         splash.splashIt(spectrum);
 
-        assertTrue(results.size() == 1);
+        assertEquals(1, results.size());
     }
 
 
@@ -254,10 +249,9 @@ public class SplashVersion1Test extends AbstractSpectraHashImplTester {
         splash.addListener(new SplashListener() {
             public void eventReceived(SplashingEvent e) {
 
-                switch (e.getBlock()) {
-                    case THIRD:
-                        assertEquals("99000000:25 100000000:50 125000000:100 130000000:0", e.getRawValue());
-                        results.add(true);
+                if (Objects.requireNonNull(e.getBlock()) == SplashBlock.THIRD) {
+                    assertEquals("99000000:25 100000000:50 125000000:100 130000000:0", e.getRawValue());
+                    results.add(true);
                 }
             }
 
@@ -268,7 +262,7 @@ public class SplashVersion1Test extends AbstractSpectraHashImplTester {
 
         splash.splashIt(spectrum);
 
-        assertTrue(results.size() == 1);
+        assertEquals(1, results.size());
     }
 
     /**
@@ -293,12 +287,9 @@ public class SplashVersion1Test extends AbstractSpectraHashImplTester {
         splash.addListener(new SplashListener() {
             public void eventReceived(SplashingEvent e) {
 
-                switch (e.getBlock()) {
-                    case THIRD:
-                        assertEquals("100000000:100 101000000:0 102000000:0", e.getRawValue());
-                        results.add(true);
-                        break;
-
+                if (Objects.requireNonNull(e.getBlock()) == SplashBlock.THIRD) {
+                    assertEquals("100000000:100 101000000:0 102000000:0", e.getRawValue());
+                    results.add(true);
                 }
 
             }
@@ -310,7 +301,7 @@ public class SplashVersion1Test extends AbstractSpectraHashImplTester {
 
         splash.splashIt(spectrum);
 
-        assertTrue(results.size() == 1);
+        assertEquals(1, results.size());
     }
 
     /**

@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>edu.ucdavis.fiehnlab.splash</groupId>
 	<artifactId>core</artifactId>
-	<version>1.8</version>
+	<version>1.8.1</version>
 
     <parent>
         <groupId>edu.ucdavis.fiehnlab</groupId>
         <artifactId>splash</artifactId>
-        <version>1.8</version>
+        <version>1.8.1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -22,6 +22,11 @@
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>1.19.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.geirove.exmeso</groupId>

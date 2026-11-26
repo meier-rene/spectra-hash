@@ -2,13 +2,13 @@ package edu.ucdavis.fiehnlab.spectra.hash.core.io;
 
 import edu.ucdavis.fiehnlab.spectra.hash.core.Spectrum;
 import edu.ucdavis.fiehnlab.spectra.hash.core.types.SpectraType;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringReader;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * simple test of a spectrum reader
