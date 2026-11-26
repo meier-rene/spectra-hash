@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>edu.ucdavis.fiehnlab.splash</groupId>
 	<artifactId>scala</artifactId>
-	<version>1.8.1</version>
+	<version>1.8.2</version>
 
 	<name>splash-scala</name>
 	<description>Scala wrapper for the Splash java library</description>
@@ -12,7 +12,7 @@
 	<parent>
 		<groupId>edu.ucdavis.fiehnlab</groupId>
 		<artifactId>splash</artifactId>
-		<version>1.8.1</version>
+		<version>1.8.2</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
@@ -21,7 +21,7 @@
 		<dependency>
 			<groupId>edu.ucdavis.fiehnlab.splash</groupId>
 			<artifactId>core</artifactId>
-			<version>1.8.1</version>
+			<version>1.8.2</version>
 		</dependency>
 	</dependencies>
 </project>
