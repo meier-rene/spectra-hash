@@ -7,7 +7,8 @@ import edu.ucdavis.fiehnlab.spectra.hash.core.types.SpectraType;
 import edu.ucdavis.fiehnlab.spectra.hash.rest.dao.Spectrum;
 import edu.ucdavis.fiehnlab.spectra.hash.rest.dao.ValidationRequest;
 import edu.ucdavis.fiehnlab.spectra.hash.rest.dao.ValidationResponse;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -21,7 +22,7 @@ public class RestController {
 
     private Splash spectraHash;
 
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     public RestController() {
         spectraHash = SplashFactory.create();

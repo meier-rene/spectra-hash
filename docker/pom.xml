@@ -24,23 +24,7 @@
             <!-- builds the actual docker image -->
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.7</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <configuration>
-                            <target>
-                                <exec executable="bash">
-                                    <arg line="build.sh push" />
-                                </exec>
-
-                            </target>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <version>3.1.0</version>
             </plugin>
 
             <plugin>
@@ -48,34 +32,23 @@
                     and install it locally -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.9.0</version>
                 <executions>
                     <execution>
                         <id>cli</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
+                        <phase>package</phase>
+                        <goals><goal>copy</goal></goals>
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>
-                                        edu.ucdavis.fiehnlab.splash
-                                    </groupId>
+                                    <groupId>edu.ucdavis.fiehnlab.splash</groupId>
                                     <artifactId>web</artifactId>
                                     <type>jar</type>
                                     <overWrite>true</overWrite>
-                                    <destFileName>
-                                        splash.jar
-                                    </destFileName>
+                                    <destFileName>splash.jar</destFileName>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>
-                                ${project.build.directory}/
-                            </outputDirectory>
-                            <overWriteReleases>true</overWriteReleases>
-                            <overWriteSnapshots>
-                                true
-                            </overWriteSnapshots>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
