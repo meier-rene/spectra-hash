@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>edu.ucdavis.fiehnlab.splash</groupId>
     <artifactId>validation</artifactId>
-    <version>1.8.2</version>
+    <version>1.8.3</version>
 
     <parent>
         <groupId>edu.ucdavis.fiehnlab</groupId>
         <artifactId>splash</artifactId>
-        <version>1.8.2</version>
+        <version>1.8.3</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -21,7 +21,7 @@
         <dependency>
             <groupId>edu.ucdavis.fiehnlab.splash</groupId>
             <artifactId>core</artifactId>
-            <version>1.8.2</version>
+            <version>1.8.3</version>
         </dependency>
 
         <dependency>

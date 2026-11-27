@@ -50,7 +50,7 @@ Build the JAR (without Docker):
 
     mvn clean package -pl web -am
 
-This produces the runnable Spring Boot JAR at `web/target/web-1.8.2.jar`.
+This produces the runnable Spring Boot JAR at `web/target/web-1.8.3.jar`.
 
 Build everything including the Docker image:
 
@@ -64,13 +64,13 @@ To push the Docker image, pass the flags:
 
 To run the JAR directly (without Docker):
 
-    java -jar web/target/web-1.8.2.jar
+    java -jar web/target/web-1.8.3.jar
 
 
 
 ### Maven Dependency
 
-The reference implementation jar file is available from the [Fiehn Lab Public Maven Repository](http://gose.fiehnlab.ucdavis.edu:55000/content/groups/public/edu/ucdavis/fiehnlab/splash/core/1.8.2/core-1.8.2.jar):
+The reference implementation jar file is available from the [Fiehn Lab Public Maven Repository](http://gose.fiehnlab.ucdavis.edu:55000/content/groups/public/edu/ucdavis/fiehnlab/splash/core/1.8.3/core-1.8.3.jar):
 
     <repository>
         <id>releases</id>
@@ -83,7 +83,7 @@ To use SPLASH in a Maven project, add the following section to the project's `po
     <dependency>
         <groupId>edu.ucdavis.fiehnlab.splash</groupId>
         <artifactId>core</artifactId>
-        <version>1.8.2</version>
+        <version>1.8.3</version>
     </dependency>
 
 
@@ -126,18 +126,18 @@ String splash = SplashUtils.splash("138.0641:71.59 195.0815:261.7", SpectraType.
 
 ## Validation Tool
 
-In addition to the reference implementations, we provide a simple validation tool that is used to ensure consistent and accurate SPLASH generation between tools and implementations.  The latest jar file is available from the [Fiehn Lab Public Maven Repository](http://gose.fiehnlab.ucdavis.edu:55000/content/groups/public/edu/ucdavis/fiehnlab/splash/validation/1.8.2/validation-1.8.2.jar).
+In addition to the reference implementations, we provide a simple validation tool that is used to ensure consistent and accurate SPLASH generation between tools and implementations.  The latest jar file is available from the [Fiehn Lab Public Maven Repository](http://gose.fiehnlab.ucdavis.edu:55000/content/groups/public/edu/ucdavis/fiehnlab/splash/validation/1.8.3/validation-1.8.3.jar).
 
 to run this tool (from the sources) please clone and build the project and afterwards run
 
 ```
-java -jar validation-1.8.2.jar
+java -jar validation-1.8.3.jar
 ```
 
 For example, to validate a file against thr reference implementation, run the following from the project root:
 
 ```
-java -jar validation/target/validation-1.8.2.jar -c -s 2 -t ms ./base-dataset/spectra/notsplashed/test-set-v1.csv base-dataset/spectra/test-set-with-splash-v1.csv
+java -jar validation/target/validation-1.8.3.jar -c -s 2 -t ms ./base-dataset/spectra/notsplashed/test-set-v1.csv base-dataset/spectra/test-set-with-splash-v1.csv
 ```
 
 The specified flags indicate:
@@ -160,7 +160,7 @@ ion:intensity ion:intensity ...
 The documentation for the REST service is available as a dedicated index page  once you start the REST server using:
 
 ```
-java -jar web/target/web-1.8.2.jar
+java -jar web/target/web-1.8.3.jar
 ```
 
 If you like to use the official REST API, you can find it at: http://splash.fiehnlab.ucdavis.edu
