@@ -6,8 +6,8 @@ IMAGE="eros.fiehnlab.ucdavis.edu/$NAME"
 
 docker build -t ${IMAGE} --rm=true . | tee build.log || exit 1
 ID=$(tail -1 build.log | awk '{print $3;}')
-docker tag -f $ID ${IMAGE}:latest
-docker tag -f $ID ${NAME}:latest
+docker tag $ID ${IMAGE}:latest
+docker tag $ID ${NAME}:latest
 
 echo "push: $1"
 if [ "$1" == "push" ]; then

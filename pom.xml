@@ -55,19 +55,6 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.13.2</version>
-                <scope>test</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>com.jayway.restassured</groupId>
-                <artifactId>rest-assured</artifactId>
-                <version>2.8.0</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
                 <groupId>com.mangofactory</groupId>
                 <artifactId>swagger-springmvc</artifactId>
                 <version>1.0.2</version>
@@ -229,13 +216,13 @@
             </activation>
             <dependencies>
                 <dependency>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
+                    <groupId>org.junit.jupiter</groupId>
+                    <artifactId>junit-jupiter</artifactId>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
-                    <groupId>org.codehaus.groovy</groupId>
-                    <artifactId>groovy-all</artifactId>
+                    <groupId>org.apache.groovy</groupId>
+                    <artifactId>groovy</artifactId>
                     <version>${groovy.version}</version>
                 </dependency>
             </dependencies>
@@ -531,68 +518,6 @@
                                 <goals>
                                     <goal>repackage</goal>
                                 </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>com.spotify</groupId>
-                        <artifactId>docker-maven-plugin</artifactId>
-                        <version>0.4.0</version>
-                        <configuration>
-                            <imageName>${docker.registry}/${docker.imageName}</imageName>
-                            <baseImage>${docker.baseImage}</baseImage>
-                            <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
-                            <exposes>
-                                <expose>${docker.expose}</expose>
-                            </exposes>
-                            <!-- copy the service's jar file from target into the root directory of the image -->
-                            <resources>
-                                <resource>
-                                    <targetPath>/</targetPath>
-                                    <directory>${project.build.directory}</directory>
-                                    <include>${project.build.finalName}.jar</include>
-                                    <include>wait-for-it.sh</include>
-                                </resource>
-                            </resources>
-                            <forceTags>true</forceTags>
-
-                            <imageTags>
-                                <imageTag>${project.version}</imageTag>
-                                <imageTag>latest</imageTag>
-                            </imageTags>
-
-                            <runs>
-                                <run>chmod 777 /wait-for-it.sh</run>
-                            </runs>
-                        </configuration>
-
-                        <executions>
-                            <execution>
-                                <phase>install</phase>
-                                <goals>
-                                    <goal>build</goal>
-                                </goals>
-                            </execution>
-
-                            <execution>
-                                <id>push-image-version</id>
-                                <phase>deploy</phase>
-                                <goals>
-                                    <goal>push</goal>
-                                </goals>
-                                <configuration>
-                                    <imageName>${docker.registry}/${docker.imageName}:${project.version}</imageName>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>push-image-latest</id>
-                                <phase>deploy</phase>
-                                <goals>
-                                    <goal>push</goal>
-                                </goals>
-                                <configuration>
-                                    <imageName>${docker.registry}/${docker.imageName}:latest</imageName>
-                                </configuration>
                             </execution>
 
                         </executions>

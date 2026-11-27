@@ -14,7 +14,7 @@ import edu.ucdavis.fiehnlab.math.similarity.CompositeSimilarity
 import edu.ucdavis.fiehnlab.splash.resolver.SpectraRetrievedResult
 import edu.ucdavis.fiehnlab.util.Utilities
 import org.apache.log4j.Logger
-import org.springframework.boot.{ApplicationArguments, ApplicationRunner, SpringApplication}
+import org.springframework.boot.{ApplicationArguments, ApplicationRunner, SpringApplication, SpringApplicationBuilder}
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.context.annotation.{ComponentScan, Configuration}
 import org.springframework.stereotype.Component
@@ -30,8 +30,10 @@ object Evaluate2ndBlock {
 
   def main(args: Array[String]): Unit = {
 
-    val app = new SpringApplication(classOf[EvaluationConfig])
-    app.setWebEnvironment(false)
+    val app = new SpringApplicationBuilder(classOf[EvaluationConfig])
+      .web(org.springframework.boot.WebApplicationType.NONE)
+      .build()
+
     app.run(args: _*)
   }
 

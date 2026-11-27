@@ -3,10 +3,12 @@ package edu.ucdavis.fiehnlab.splash.splashanalysis;
 import com.rabbitmq.client.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+
 import java.io.IOException;
-import java.lang.System;
 
 /**
  * Created by sajjan on 10/27/2015.
@@ -26,8 +28,10 @@ public class Application implements CommandLineRunner {
 
 
     public static void main(String[] args) {
-        SpringApplication app = new SpringApplication(Application.class);
-        app.setWebEnvironment(false);
+        SpringApplication app = new SpringApplicationBuilder(Application.class)
+                .web(WebApplicationType.NONE)
+                .build();
+
         app.run(args);
     }
 
